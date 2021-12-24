@@ -6,6 +6,7 @@ OROGIN README.md: [English](./README-origin.md) | [简体中文](./README-zh-ori
 ## Modify List
 * Reduce Settings Menu
 * dev source map
+* fix redirect query param problem
 
 
 
