@@ -7,6 +7,7 @@ OROGIN README.md: [English](./README-origin.md) | [简体中文](./README-zh-ori
 * Reduce Settings Menu
 * dev source map
 * fix redirect query param problem
+* sidebar color custom
 
 
 
