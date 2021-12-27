@@ -72,9 +72,9 @@ service.interceptors.response.use(
     }
   },
   error => {
-    if (401 === error.response.status) {
+    if (error.response.status === 401) {
       Message({
-        message: "Token invalid, please login again",
+        message: 'Token invalid, please login',
         type: 'error',
         duration: 5 * 1000
       })
