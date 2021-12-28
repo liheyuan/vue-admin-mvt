@@ -91,6 +91,22 @@ export const constantRoutes = [
   },
 
   {
+    path: '/news',
+    component: Layout,
+    redirect: '/news/create',
+    name: 'News',
+    meta: { title: 'Example', icon: 'el-icon-document' },
+    children: [
+      {
+        path: 'create',
+        name: 'Create News',
+        component: () => import('@/views/news/create'),
+        meta: { title: 'Create News', icon: 'el-icon-edit-outline' }
+      }
+    ]
+  },
+
+  {
     path: '/nested',
     component: Layout,
     redirect: '/nested/menu1',
