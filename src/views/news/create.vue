@@ -10,33 +10,39 @@
       <el-form-item label="标题" prop="title">
         <el-input v-model="form.title" />
       </el-form-item>
-      <el-form-item label="分类" prop="category">
-        <el-select
-          v-model="form.category"
-          placeholder="请选择分类"
-          style="width: 100%"
-        >
-          <el-option label="分类1" value="1" />
-          <el-option label="分类2" value="2" />
-          <el-option label="分类3" value="3" />
-        </el-select>
+
+      <el-form-item label="分类" prop="catId">
+        <el-col :span="11">
+          <el-select
+            v-model="form.catId"
+            placeholder="请选择分类"
+            style="width: 100%"
+          >
+            <el-option label="分类1" value="1" />
+            <el-option label="分类2" value="2" />
+            <el-option label="分类3" value="3" />
+          </el-select>
+        </el-col>
       </el-form-item>
-      <el-form-item label="发布时间">
+      <el-form-item label="展示时间">
         <el-col :span="11">
           <el-date-picker
-            v-model="form.date1"
-            type="date"
+            v-model="form.dateStart"
+            type="datetime"
             placeholder="选择日期"
             style="width: 100%"
           />
         </el-col>
-        <el-col class="line" :span="2">-</el-col>
+        <el-col :span="2" class="line">-</el-col>
         <el-col :span="11">
-          <el-time-picker
-            v-model="form.date2"
-            placeholder="选择时间"
+          <el-date-picker
+            v-model="form.dateEnd"
+            type="datetime"
+            placeholder="选择日期"
             style="width: 100%"
-          /> </el-col></el-form-item>
+          />
+        </el-col>
+      </el-form-item>
       <el-form-item label="标签">
         <el-checkbox-group v-model="form.tags">
           <el-checkbox label="tag1" name="tag">标签1</el-checkbox>
@@ -51,8 +57,8 @@
           <el-radio :label="false" name="show">否</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="正文" prop="desc">
-        <el-input v-model="form.desc" type="textarea" :rows="10" />
+      <el-form-item label="正文" prop="content">
+        <el-input v-model="form.content" type="textarea" :rows="10" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit('form')">提交</el-button>
@@ -62,19 +68,21 @@
   </div>
 </template>
 <script>
+import { create } from '@/api/news'
+
 export default {
   data() {
     return {
       form: {
         title: '',
-        category: '',
+        catId: '',
         tags: [],
         show: true,
-        desc: ''
+        content: ''
       },
       rules: {
         title: [{ required: true, message: '请填写标题' }],
-        category: [{ required: true, message: '请选择分类', trigger: ['blur', 'change'] }],
+        category: [{ required: true, message: '请选择分类', trigger: ['blur', 'change'], type: 'number' }],
         desc: [{ required: true, message: '请填写正文' }]
       }
 
@@ -83,10 +91,13 @@ export default {
 
   methods: {
     onSubmit(formName) {
-      this.$refs[formName].validate((valid) => {
+      const form = this.$refs[formName]
+      const data = form.model
+      form.validate((valid) => {
         if (valid) {
-          this.$message('已提交')
-          console.log(this.form)
+          create(data).then(() => {
+            this.$message('已提交')
+          })
         } else {
           return false
         }
