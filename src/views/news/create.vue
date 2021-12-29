@@ -62,7 +62,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit('form')">提交</el-button>
-        <el-button @click="onCancel('form')">取消</el-button>
+        <el-button @click="onReset('form')">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -82,7 +82,7 @@ export default {
       },
       rules: {
         title: [{ required: true, message: '请填写标题' }],
-        category: [{ required: true, message: '请选择分类', trigger: ['blur', 'change'], type: 'number' }],
+        catId: [{ required: true, message: '请选择分类', trigger: ['blur', 'change'] }],
         desc: [{ required: true, message: '请填写正文' }]
       }
 
@@ -97,14 +97,16 @@ export default {
         if (valid) {
           create(data).then(() => {
             this.$message('已提交')
+            this.$refs[formName].resetFields()
           })
         } else {
           return false
         }
       })
     },
-    onCancel() {
-      this.$message({ message: '已取消', type: 'warning' })
+    onReset(formName) {
+      this.$refs[formName].resetFields()
+      this.$message({ message: '已重置', type: 'warning' })
     }
   }
 }
