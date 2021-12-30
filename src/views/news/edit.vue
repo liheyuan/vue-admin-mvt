@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <detail :edit="false" />
+    <detail :edit="true" />
   </div>
 </template>
 
