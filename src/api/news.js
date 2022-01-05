@@ -22,3 +22,20 @@ export function getNews(id) {
     method: 'get'
   })
 }
+
+export function deleteNews(id) {
+  return request({
+    url: 'api/news/' + id,
+    method: 'delete'
+  })
+}
+
+export function getNewsList(query) {
+  return request({
+    url: 'api/news/list',
+    method: 'get',
+    params: {
+      ...query
+    }
+  })
+}

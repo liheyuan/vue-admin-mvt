@@ -93,7 +93,7 @@ export const constantRoutes = [
   {
     path: '/news',
     component: Layout,
-    redirect: '/news/create',
+    redirect: '/news/list',
     name: 'News',
     meta: { title: 'News', icon: 'el-icon-document' },
     children: [
@@ -107,7 +107,14 @@ export const constantRoutes = [
         path: 'edit/:id',
         name: 'Edit News',
         component: () => import('@/views/news/edit'),
-        meta: { title: 'Edit News', icon: 'el-icon-edit-outline' }
+        meta: { title: 'Edit News', icon: 'el-icon-edit-outline' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        name: 'List News',
+        component: () => import('@/views/news/list'),
+        meta: { title: 'List News', icon: 'el-icon-edit-outline' }
       }
     ]
   },

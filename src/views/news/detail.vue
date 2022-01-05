@@ -119,7 +119,7 @@ export default {
         if (valid) {
           const p = this.edit ? updateNews(data) : createNews(data)
           p.then(() => {
-            this.$message('已提交')
+            this.$message({ message: this.edit ? '更新成功' : '添加成功', type: 'success' })
             if (!this.edit) {
               this.$refs[formName].resetFields()
             }
