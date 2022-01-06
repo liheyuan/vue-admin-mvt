@@ -1,5 +1,30 @@
 <template>
   <div class="app-container">
+    <div class="filter-container">
+      <el-form :inline="true">
+        <el-form-item label="标题">
+          <el-input
+            v-model="query.title"
+            style="width: 200px"
+            clearable
+            @keyup.enter.native="refresh"
+            @clear="refresh"
+            @blur="refresh"
+          />
+        </el-form-item>
+        <el-form-item label="对外展示">
+          <el-radio-group
+            v-model="query.show"
+            clearable
+            @change="refresh"
+          >
+            <el-radio-button :label="true" name="show">是</el-radio-button>
+            <el-radio-button :label="false" name="show">否</el-radio-button>
+          </el-radio-group>
+        </el-form-item>
+        <el-button type="primary" @click="refresh">查询</el-button>
+      </el-form>
+    </div>
     <el-table
       :data="list"
       style="width: 100%"
@@ -134,5 +159,10 @@ export default ({
   padding: 32px 16px;
   margin:0px auto;
   width: 100%
+}
+.filter-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 </style>

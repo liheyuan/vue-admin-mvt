@@ -8,6 +8,7 @@ OROGIN README.md: [English](./README-origin.md) | [简体中文](./README-zh-ori
 * dev source map
 * fix redirect query param problem
 * sidebar color custom
-* create / update news
+* create / update / delete news
+* list / page news
 
 
