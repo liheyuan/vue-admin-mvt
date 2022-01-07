@@ -91,6 +91,7 @@
         :total="total"
         :current-page.sync="query.currentPage"
         :page-size.sync="query.pageSize"
+        background="true"
         @current-change="refresh"
       />
     </div>
@@ -155,14 +156,18 @@ export default ({
 
 <style scoped>
 .pagination-container {
+  display: flex;
+  justify-content: center;
   background: #fff;
   padding: 32px 16px;
   margin:0px auto;
-  width: 100%
+  width: 100%;
+  padding-right: 40px;
 }
 .filter-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  padding-right: 40px;
 }
 </style>
